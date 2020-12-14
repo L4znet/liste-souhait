@@ -13,7 +13,7 @@
             <input type="text" name="ville" id="ville" placeholder="Ville" class="form-control" value="<?= $famille->ville?>">
             <span class="text text-danger"><?= $errors['ville'] ?? '' ?></span>
         </div>
-        <button role="submit" class="btn btn-primary">Modifier</button>
+        <button role="submit" class="btn btn-success">Modifier la famille <?= $famille->nom?></button>
         <a href="<?= BASE_URI ?>/" role="submit" class="btn btn-outline-primary">Annuler</a>
     </form>
 </main>

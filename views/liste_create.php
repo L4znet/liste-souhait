@@ -8,7 +8,7 @@
             <input type="text" name="annee" id="annee" placeholder="Année" class="form-control">
             <span class="text text-danger"><?= $errors['annee'] ?? '' ?></span>
         </div>
-        <button role="submit" class="btn btn-primary">Créer la liste</button>
+        <button role="submit" class="btn btn-success">Créer la liste</button>
         <a href="<?= BASE_URI ?>/membre/<?= $membre->id ?>/listes" role="submit" class="btn btn-outline-primary">Annuler</a>
     </form>
 </main>

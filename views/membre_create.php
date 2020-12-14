@@ -13,7 +13,7 @@
             <input type="date" name="date_naissance" id="date_naissance" placeholder="Date de naissance" class="form-control">
             <span class="text text-danger"><?= $errors['date_naissance'] ?? '' ?></span>
         </div>
-        <button role="submit" class="btn btn-primary">Créer</button>
+        <button role="submit" class="btn btn-success">Ajouter un membre</button>
         <a href="<?= BASE_URI ?>/famille/<?= $famille->id ?>" role="submit" class="btn btn-outline-primary">Annuler</a>
     </form>
 </main>

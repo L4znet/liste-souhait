@@ -29,7 +29,7 @@
             <input type="url" name="lien" id="lien" placeholder="Lien" class="form-control" value="<?= $souhait->lien ?>">
             <span class="text text-danger"><?= $errors['lien'] ?? '' ?></span>
         </div>
-        <button role="submit" class="btn btn-primary">Modifier ce souhait</button>
+        <button role="submit" class="btn btn-success">Modifier <?= $souhait->nom ?></button>
         <a href="<?= BASE_URI ?>/liste/<?= $souhait->id_liste ?>/souhait" role="submit" class="btn btn-outline-primary">Annuler</a>
     </form>
 </main>
