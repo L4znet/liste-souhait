@@ -14,4 +14,13 @@ class ListeSouhait extends Model
         $query_builder = QueryBuilder::model(ListeSouhait::class);
         return $query_builder->where('id_membre', $id_membre)->orderByDesc('created_at')->get();
     }
+
+    public static function deleteAllFromListe($id_liste)
+    {
+        $query_builder = QueryBuilder::model(ListeSouhait::class);
+        $query_builder->where('id', $id_liste)->delete();
+        
+        $query_builder = QueryBuilder::model(Souhait::class);
+        $query_builder->where('id_liste', $id_liste)->delete();
+    }
 }

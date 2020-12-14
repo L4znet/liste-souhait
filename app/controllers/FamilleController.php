@@ -7,12 +7,14 @@ use Core\View;
 
 use App\Models\Famille;
 use App\Models\Membre;
+use App\Models\ListeSouhait;
+use App\Models\Souhait;
 
 class FamilleController extends Controller
 {
     protected $rules = [
-        'title' => 'required',
-        'text' => 'required',
+        'nom' => 'required',
+        'ville' => 'required',
     ];
 
     public function index()
@@ -24,61 +26,64 @@ class FamilleController extends Controller
         $famille = Famille::find($id);
         $membres = Membre::getForFamille($id);
         
-        $page_title = 'La famille : ' . $famille->nom;
-
+        if (isset($famille->nom)) {
+            $page_title = 'La famille : ' . $famille->nom;
+        } else {
+            $page_title = "";
+        }
+       
         $view = new View('famille');
         $view->render(compact('famille', 'page_title', 'membres'));
     }
 
     public function create()
     {
-        $page_title = 'Nouvel article';
+        $page_title = 'Nouvelle famille';
         
-        $view = new View('article-create');
+        $view = new View('famille_create');
         $view->render(compact('page_title'));
     }
 
     public function store($data)
     {
         if ($this->validate($data)) {
-            $article = Article::create($data);
-
-            flash('message', "L'article {$article->title} a bien été créé.");
-
-            $this->redirect("article/{$article->id}");
+            $famille = Famille::create($data);
+            flash('message', "La famille {$famille->nom} a bien été créé.");
+            $this->redirect("/");
         } else {
-            $this->redirect("article/create");
+            $this->redirect("famille/create");
         }
     }
 
     public function edit($id)
     {
-        $article = Article::find($id);
+        $famille = Famille::find($id);
 
-        $page_title = "Modification de l'article {$article->title}";
+        $page_title = "Modification de l'article {$famille->nom}";
         
-        $view = new View('article-edit');
+        $view = new View('famille-edit');
 
-        $view->render(compact('article', 'page_title'));
+        $view->render(compact('famille', 'page_title'));
     }
 
     public function update($data, $id)
     {
         if ($this->validate($data)) {
-            $article = Article::update($data, $id);
+            $famille = Famille::update($data, $id);
 
-            flash('message', "L'article {$article->title} a bien été modifié.");
+            flash('message', "La famille {$famille->nom} a bien été modifié.");
 
-            $this->redirect("article/{$id}");
+            $this->redirect("/");
         } else {
-            $this->redirect("article/{$id}/edit");
+            $this->redirect("famille/{$id}/edit");
         }
     }
 
     public function destroy($id)
     {
-        Article::destroy($id);
-        flash('message', "L'article a bien été supprimé.");
-        $this->redirect("article");
+        Famille::deleteAllFromFamille($id);
+        Famille::destroy($id);
+        flash('message', "La famille {$famille->nom} ainsi que l'ensemble du contenu rattaché ont bien été supprimé.");
+        $this->redirect("/");
     }
 }

@@ -260,8 +260,8 @@ class QueryBuilder
                 $tokens = implode(', ', array_values($this->data));
         
                 $sql = "INSERT INTO {$this->table} ({$fields}) VALUES ({$tokens})";
-
-                break;
+                
+            break;
 
             case 'update':
 

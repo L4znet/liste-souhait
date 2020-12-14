@@ -29,7 +29,6 @@ abstract class Model
         //$query_builder = QueryBuilder::model(static::class);
         
         $id = static::query()->insert($data);
-        
         return static::find($id);
     }
 

@@ -6,8 +6,9 @@
     <?php foreach ($familles as $famille) : ?>
     <h2><?= $famille->nom ?></h2>
     <p><?= $famille->ville ?></p>
-    <a class="btn btn-primary" href="<?= BASE_URI ?>/famille/<?= $famille->id ?>">Consulter</a> - <a class="btn btn-warning" href="<?= BASE_URI ?>/famille/<?= $article->id ?>/edit">Modifier</a>
-    - <a class="btn btn-danger" href="<?= BASE_URI ?>/famille/<?= $article->id ?>/edit">Supprimer</a>
+    <a class="btn btn-primary" href="<?= BASE_URI ?>/famille/<?= $famille->id ?>">Consulter</a> -
+    <a class="btn btn-warning" href="<?= BASE_URI ?>/famille/<?= $famille->id ?>/edit">Modifier</a>
+    - <a class="btn btn-danger" href="<?= BASE_URI ?>/famille/<?= $famille->id ?>/destroy">Supprimer</a>
     <hr>
 
     <?php endforeach; ?>

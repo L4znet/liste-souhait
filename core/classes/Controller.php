@@ -13,26 +13,21 @@ abstract class Controller
         $errors = [];
 
         foreach ($rules as $field => $rule) {
-
             if (is_array($rule)) {
-                foreach($rule as $rule2) {
+                foreach ($rule as $rule2) {
                     $errors = $this->applyRule($data, $field, $rule2, $errors);
                 }
-            }
-            else {
-                $errors = $this->applyRule($data, $field, $rule, $errors); 
+            } else {
+                $errors = $this->applyRule($data, $field, $rule, $errors);
             }
         }
 
         if (!empty($errors)) {
-
             flash('data', $data);
             flash('errors', $errors);
 
             return false;
-            
         } else {
-
             return true;
         }
     }
@@ -41,7 +36,7 @@ abstract class Controller
     {
         @list($rule, $param) = explode(':', $rule);
         
-        switch($rule) {
+        switch ($rule) {
 
             case 'required':
 
