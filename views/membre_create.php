@@ -14,7 +14,7 @@
             <span class="text text-danger"><?= $errors['date_naissance'] ?? '' ?></span>
         </div>
         <button role="submit" class="btn btn-primary">Créer</button>
-        <a href="<?= BASE_URI ?>/" role="submit" class="btn btn-outline-primary">Annuler</a>
+        <a href="<?= BASE_URI ?>/famille/<?= $famille->id ?>" role="submit" class="btn btn-outline-primary">Annuler</a>
     </form>
 </main>
 

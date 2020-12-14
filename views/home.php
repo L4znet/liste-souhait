@@ -1,10 +1,15 @@
 <?php require('views/layouts/header.php') ?>
 
 <main class="bg-white p-5 shadow-sm">
-    <a href="<?= BASE_URI ?>/famille/create" class="btn btn-primary float-right">Créer une famille</a>
-
     <?php foreach ($familles as $famille) : ?>
-    <h2><?= $famille->nom ?></h2>
+    <div class="row w-100 d-flex align-items-center justify-content-between">
+        <div class="col-7">
+            <h2><?= $famille->nom ?></h2>
+        </div>
+        <div class="col-3">
+            <a href="<?= BASE_URI ?>/famille/create" class="btn btn-primary float-right">Créer une famille</a>
+        </div>
+    </div>
     <p><?= $famille->ville ?></p>
     <a class="btn btn-primary" href="<?= BASE_URI ?>/famille/<?= $famille->id ?>">Consulter</a> -
     <a class="btn btn-warning" href="<?= BASE_URI ?>/famille/<?= $famille->id ?>/edit">Modifier</a>

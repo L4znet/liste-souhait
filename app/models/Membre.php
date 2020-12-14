@@ -14,14 +14,14 @@ class Membre extends Model
         return $query_builder->where('id_famille', $id_famille)->orderByDesc('created_at')->get();
     }
 
-    public static function deleteAllFromMembre($id_membre)
+    public static function deleteAllFromMembre($id)
     {
         $query_builder = QueryBuilder::model(Membre::class);
-        $query_builder->where('id_membre', $id_membre)->delete();
+        $query_builder->where('id', $id)->delete();
 
         $query_builder = QueryBuilder::model(ListeSouhait::class);
-        $liste = $query_builder->whereNotDeleted()->where('id_membre', $id_membre)->first();
-        $query_builder->where('id_membre', $id_membre)->delete();
+        $liste = $query_builder->whereNotDeleted()->where('id_membre', $id)->first();
+        $query_builder->where('id_membre', $id)->delete();
         
         $query_builder = QueryBuilder::model(Souhait::class);
         $query_builder->where('id_liste', $liste->id)->delete();

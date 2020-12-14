@@ -12,7 +12,7 @@ use App\Models\ListeSouhait;
 class ListeSouhaitController extends Controller
 {
     protected $rules = [
-        'annee' => 'required'
+        'annee' => ['required', 'year']
     ];
 
     public function index()

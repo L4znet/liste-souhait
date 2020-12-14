@@ -2,9 +2,13 @@
 
 <main class="bg-white p-5 shadow-sm">
     <div class="row w-100 d-flex align-items-center justify-content-between">
-        <h1><?= $famille->nom ?? ''?></h1>
-        <h2><?= $famille->ville ?? ''?></h2>
-
+        <div class="col-7">
+            <h1><?= $famille->nom ?? ''?></h1>
+            <h2><?= $famille->ville ?? ''?></h2>
+        </div>
+        <div class="col-3">
+            <a class="btn btn-primary" href="<?= BASE_URI ?>/famille/<?=  $famille->id ?>/membre/create">Ajouter un membre</a>
+        </div>
     </div>
 
     <?php foreach ($membres as $membre): ?>
@@ -19,7 +23,7 @@
         </div>
     </div>
     <?php  endforeach; ?>
-    <a class="btn btn-primary" href="<?= BASE_URI ?>/famille/<?=  $famille->id ?>/membre/create">Ajouter un membre</a>
+
 </main>
 
 <?php require('views/layouts/footer.php') ?>

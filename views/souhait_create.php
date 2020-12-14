@@ -15,11 +15,11 @@
         </div>
         <div class="form-group">
             <label for="lien">Lien (facultatif)</label>
-            <input type="url" name="lien" id="lien" placeholder="Lien" class="form-control">
+            <input type="text" name="lien" id="lien" placeholder="Lien" class="form-control">
             <span class="text text-danger"><?= $errors['lien'] ?? '' ?></span>
         </div>
         <button role="submit" class="btn btn-primary">Ajouter ce souhait</button>
-        <a href="<?= BASE_URI ?>/liste/<?= $liste->id ?>/listes" role="submit" class="btn btn-outline-primary">Annuler</a>
+        <a href="<?= BASE_URI ?>/liste/<?= $liste->id ?>/souhait" role="submit" class="btn btn-outline-primary">Annuler</a>
     </form>
 </main>
 

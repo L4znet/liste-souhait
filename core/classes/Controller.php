@@ -46,21 +46,50 @@ abstract class Controller
 
                 break;
 
-            case 'email':
-
-                if (!filter_var($data[$field], FILTER_VALIDATE_EMAIL)) {
-                    $errors[$field] = 'Ce champ n\'est pas un e-mail';
-                }
-
-                break;
-
             case 'min':
 
-                if (strlen($data[$field]) < $param) {
+                if (strlen($data[$field]) < $param && strlen($data[$field]) > 0) {
                     $errors[$field] = 'Ce champ est trop court';
                 }
 
                 break;
+                
+            case 'max':
+
+                if (strlen($data[$field]) > $param) {
+                    $errors[$field] = 'Ce champ est trop long';
+                }
+
+                break;
+                
+            case 'number':
+                
+                if (!empty($data[$field])) {
+                    if (preg_match('/\d/', $data[$field]) == 0) {
+                        $errors[$field] = 'Vous devez saisir un nombre.';
+                    }
+                }
+                break;
+
+            case 'url':
+                if (!empty($data[$field])) {
+                    if (preg_match('/[https|http]+\:\/\/([w]{3,3})?.[a-z0-9]+\.(fr|com|net|shop|store)+(\/?)(.?)+/', $data[$field]) == 0) {
+                        $errors[$field] = 'Vous devez saisir une url valide.';
+                    }
+                }
+                break;
+
+            case 'date':
+                if (preg_match('/(19[0-9]{2,2}+)-([0-9]{2,2})-([0-9]{2,2})/', $data[$field]) == 0) {
+                    $errors[$field] = 'Vous devez saisir une date valide.';
+                }
+                break;
+                
+            case 'year':
+                if ($data[$field] < date('Y') || strlen($data[$field]) < 4 || strlen($data[$field]) > 4) {
+                    $errors[$field] = 'Vous devez saisir une année valide.';
+                    break;
+                }
         }
 
             

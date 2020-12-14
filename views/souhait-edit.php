@@ -30,7 +30,7 @@
             <span class="text text-danger"><?= $errors['lien'] ?? '' ?></span>
         </div>
         <button role="submit" class="btn btn-primary">Modifier ce souhait</button>
-        <a href="<?= BASE_URI ?>/liste/<?= $liste->id ?>/souhait" role="submit" class="btn btn-outline-primary">Annuler</a>
+        <a href="<?= BASE_URI ?>/liste/<?= $souhait->id_liste ?>/souhait" role="submit" class="btn btn-outline-primary">Annuler</a>
     </form>
 </main>
 

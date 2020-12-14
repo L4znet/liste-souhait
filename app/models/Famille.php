@@ -10,6 +10,9 @@ class Famille extends Model
 {
     public static function deleteAllFromFamille($id_famille)
     {
+        $query_builder = QueryBuilder::model(Famille::class);
+        $query_builder->where('id', $id_famille)->delete();
+
         $query_builder = QueryBuilder::model(Membre::class);
         $membre = $query_builder->whereNotDeleted()->where('id_famille', $id_famille)->first();
         $query_builder->where('id_famille', $id_famille)->delete();

@@ -12,7 +12,7 @@ class MembreController extends Controller
 {
     protected $rules = [
         'prenom' => 'required',
-        'date_naissance' => 'required',
+        'date_naissance' => ['required', 'date'],
     ];
 
     public function index()
@@ -63,7 +63,7 @@ class MembreController extends Controller
 
             $this->redirect("famille/{$membre->id_famille}");
         } else {
-            $this->redirect("membre/{$membre->id}/edit");
+            $this->redirect("membre/{$id}/edit");
         }
     }
 

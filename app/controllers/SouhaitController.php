@@ -13,7 +13,10 @@ use App\Models\Famille;
 class SouhaitController extends Controller
 {
     protected $rules = [
-        'nom' => 'required'
+        'nom' => ['required', 'min:2'],
+        'prix' => 'number',
+        'lien' => 'url'
+
     ];
 
     public function index()
@@ -90,10 +93,10 @@ class SouhaitController extends Controller
                 $souhait->show = "d-none";
             }
             flash('message', "{$souhait->nom} a bien été ajouté à la liste.");
-
-            $this->redirect("liste/{$souhait->id_liste}/souhait");
+            
+            $this->redirect("liste/{$id_liste}/souhait");
         } else {
-            $this->redirect("liste/{$souhait->id_liste}/souhait/create");
+            $this->redirect("liste/{$id_liste}/souhait/create");
         }
     }
 
@@ -103,6 +106,10 @@ class SouhaitController extends Controller
     {
         $souhait = Souhait::find($id);
         $membres = Membre::get();
+        
+        if ($souhait->prix == null) {
+            $souhait->prix = "";
+        }
         
         $this->getDonneur($souhait, "Choix de la personne", false);
 
@@ -114,13 +121,20 @@ class SouhaitController extends Controller
     public function update($data, $id)
     {
         if ($this->validate($data)) {
+            if (empty($data['lien'])) {
+                $data['lien'] = null;
+            }
+            if (empty($data['prix'])) {
+                $data['prix'] = null;
+            }
+        
             $souhait = Souhait::update($data, $id);
 
             flash('message', "Le souhait {$souhait->nom} a bien été modifié.");
 
             $this->redirect("liste/{$souhait->id_liste}/souhait");
         } else {
-            $this->redirect("liste/souhait/cadeau/{$souhait->id}");
+            $this->redirect("liste/souhait/cadeau/{$id}");
         }
     }
 

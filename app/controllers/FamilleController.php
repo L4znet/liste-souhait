@@ -12,9 +12,10 @@ use App\Models\Souhait;
 
 class FamilleController extends Controller
 {
+    // J'ai pris pour référence le nom de famille le plus long du monde (47 caractères)
     protected $rules = [
-        'nom' => 'required',
-        'ville' => 'required',
+        'nom' => ['required', 'min:2', 'max:60'],
+        'ville' => ['required', 'min:3']
     ];
 
     public function index()
@@ -26,11 +27,7 @@ class FamilleController extends Controller
         $famille = Famille::find($id);
         $membres = Membre::getForFamille($id);
         
-        if (isset($famille->nom)) {
-            $page_title = 'La famille : ' . $famille->nom;
-        } else {
-            $page_title = "";
-        }
+        $page_title = 'La famille : ' . $famille->nom;
        
         $view = new View('famille');
         $view->render(compact('famille', 'page_title', 'membres'));
@@ -81,8 +78,8 @@ class FamilleController extends Controller
 
     public function destroy($id)
     {
+        $famille = Famille::find($id);
         Famille::deleteAllFromFamille($id);
-        Famille::destroy($id);
         flash('message', "La famille {$famille->nom} ainsi que l'ensemble du contenu rattaché ont bien été supprimé.");
         $this->redirect("/");
     }
