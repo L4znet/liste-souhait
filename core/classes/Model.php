@@ -14,14 +14,14 @@ abstract class Model
     {
         //$query_builder = QueryBuilder::model(static::class);
 
-        return static::query()->whereNotDeleted()->where('id', $id)->first();
+        return static::query()->where('id', $id)->first();
     }
 
     public static function get()
     {
         //$query_builder = QueryBuilder::model(static::class);
 
-        return static::query()->whereNotDeleted()->orderByDesc('created_at')->get();
+        return static::query()->orderByDesc('created_at')->get();
     }
 
     public static function create($data)
