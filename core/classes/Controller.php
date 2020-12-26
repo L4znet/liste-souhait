@@ -79,6 +79,8 @@ abstract class Controller
                 }
                 break;
 
+
+
             case 'date':
                 if (preg_match('/(19[0-9]{2,2}+)-([0-9]{2,2})-([0-9]{2,2})/', $data[$field]) == 0) {
                     $errors[$field] = 'Vous devez saisir une date valide.';
